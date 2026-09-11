@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verdant Studio — Landscape Architecture</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --forest: #1a3c27;
+            --sage: #6b8f71;
+            --moss: #8faa8f;
+            --cream: #f5f1eb;
+            --sand: #e8e0d4;
+            --charcoal: #2c2c2c;
+            --warm-white: #faf8f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--warm-white);
+            color: var(--charcoal);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(250, 248, 245, 0.92);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 0 5%;
+            border-bottom: 1px solid rgba(26, 60, 39, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 2px 20px rgba(26, 60, 39, 0.08);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--forest);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            font-weight: 400;
+            font-style: italic;
+            color: var(--sage);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 48px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            padding: 4px 0;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--forest);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--forest);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a3c27 0%, #2d5a3d 50%, #4a7c59 100%);
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.03" d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,138.7C672,128,768,160,864,181.3C960,203,1056,213,1152,197.3C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            padding: 0 5%;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.85;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-weight: 300;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            color: var(--forest);
+            padding: 16px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+        }
+
+        .hero-cta svg {
+            transition: transform 0.3s;
+        }
+
+        .hero-cta:hover svg {
+            transform: translateX(4px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.6);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 120px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            color: var(--forest);
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header p {
+            color: var(--sage);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: var(--forest);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            height: 420px;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px 30px 30px;
+            background: linear-gradient(to top, rgba(26,60,39,0.9) 0%, rgba(26,60,39,0.4) 60%, transparent 100%);
+            color: white;
+            transition: all 0.4s ease;
+        }
+
+        .project-card:hover .project-overlay {
+            padding-bottom: 40px;
+        }
+
+        .project-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .project-overlay h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .project-overlay p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        /* Case Studies */
+        .case-studies {
+            background: var(--cream);
+            margin: 0 -5%;
+            padding: 120px 5%;
+            width: calc(100% + 10%);
+        }
+
+        .case-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .case-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .case-item {
+            display: contents;
+        }
+
+        .case-item:nth-child(even) .case-image {
+            order: 2;
+        }
+
+        .case-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            height: 450px;
+        }
+
+        .case-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .case-content {
+            padding: 20px 0;
+        }
+
+        .case-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: var(--sage);
+            opacity: 0.3;
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+
+        .case-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--forest);
+            margin-bottom: 16px;
+        }
+
+        .case-content p {
+            color: #666;
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+
+        .case-meta {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 24px;
+        }
+
+        .case-meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .case-meta-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--sage);
+            margin-bottom: 4px;
+        }
+
+        .case-meta-value {
+            font-weight: 600;
+            color: var(--forest);
+        }
+
+        .case-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--forest);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid var(--forest);
+            padding-bottom: 4px;
+            transition: all 0.3s;
+        }
+
+        .case-btn:hover {
+            gap: 14px;
+        }
+
+        /* About / Contact Section */
+        .about-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .about-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--forest);
+            margin-bottom: 24px;
+        }
+
+        .about-info > p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            font-size: 1.05rem;
+        }
+
+        .contact-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+            border: 1px solid rgba(26,60,39,0.08);
+        }
+
+        .contact-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--forest);
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--cream);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--forest);
+        }
+
+        .contact-item div strong {
+            display: block;
+            color: var(--forest);
+            margin-bottom: 4px;
+        }
+
+        .contact-item div span {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--forest);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--forest);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .about-image {
+            border-radius: 20px;
+            overflow: hidden;
+            height: 100%;
+            min-height: 500px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--forest);
+            color: rgba(255,255,255,0.7);
+            padding: 60px 5% 30px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .footer-logo span {
+            font-style: italic;
+            opacity: 0.7;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .footer-bottom {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem;
+            opacity: 0.5;
+        }
+
+        /* Chat Agent */
+        .chat-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+        }
+
+        .chat-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--forest);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 30px rgba(26,60,39,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 1.4rem;
+        }
+
+        .chat-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 40px rgba(26,60,39,0.4);
+        }
+
+        .chat-toggle.pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(26,60,39,0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(26,60,39,0); }
+            100% { box-shadow: 0 0 0 0 rgba(26,60,39,0); }
+        }
+
+        .chat-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 360px;
+            height: 480px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .chat-window.open {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: all;
+        }
+
+        .chat-header {
+            background: var(--forest);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chat-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .chat-header div h4 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .chat-header div span {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .chat-close {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .chat-close:hover {
+            opacity: 1;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .chat-message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            animation: messageIn 0.3s ease;
+        }
+
+        @keyframes messageIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .chat-message.bot {
+            background: var(--cream);
+            color: var(--charcoal);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-message.user {
+            background: var(--forest);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-input-area {
+            padding: 16px 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 24px;
+            padding: 10px 18px;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .chat-input:focus {
+            border-color: var(--sage);
+        }
+
+        .chat-send {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--forest);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .chat-send:hover {
+            background: var(--sage);
+            transform: scale(1.05);
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 12px 16px;
+            background: var(--cream);
+            border-radius: 16px;
+            border-bottom-left-radius: 4px;
+            align-self: flex-start;
+            width: fit-content;
+        }
+
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            background: var(--sage);
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+            30% { transform: translateY(-6px); opacity: 1; }
+        }
+
+        /* Quick Replies */
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .quick-reply {
+            background: white;
+            border: 1px solid var(--sage);
+            color: var(--forest);
+            padding: 6px 14px;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quick-reply:hover {
+            background: var(--forest);
+            color: white;
+            border-color: var(--forest);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .case-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .case-item:nth-child(even) .case-image {
+                order: 0;
+            }
+            .about-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .about-image {
+                min-height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 24px;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .chat-window {
+                width: calc(100vw - 40px);
+                right: -10px;
+            }
+            section {
+                padding: 80px 5%;
+            }
+        }
+
+        /* Fade In Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Verdant <span>Studio</span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#cases">Case of Success</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-tag">Landscape Architecture</div>
+            <h1>We Design Living Landscapes That Breathe</h1>
+            <p>Verdant Studio transforms outdoor spaces into immersive natural experiences — where ecology meets artistry and every garden tells a story.</p>
+            <a href="#projects" class="hero-cta">
+                Explore Our Work
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+        </div>
+        <div class="scroll-indicator">Scroll</div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="section-header fade-in">
+            <h2>Featured Landscapes</h2>
+            <div class="divider"></div>
+            <p>A curated selection of our most transformative landscape architecture projects, from urban parks to private estates.</p>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card fade-in">
+                <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800&q=80" alt="Urban Botanical Garden">
+                <div class="project-overlay">
+                    <span class="project-tag">Public Space</span>
+                    <h3>Urban Botanical Garden</h3>
+                    <p>A 12-acre revitalized green corridor connecting three city districts with native flora and interactive water features.</p>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80" alt="Coastal Retreat">
+                <div class="project-overlay">
+                    <span class="project-tag">Residential</span>
+                    <h3>Coastal Retreat Estate</h3>
+                    <p>Dune-integrated landscape design preserving native coastal vegetation while creating seamless indoor-outdoor living.</p>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <img src="https://images.unsplash.com/photo-1598902108854-10e335adac99?w=800&q=80" alt="Zen Courtyard">
+                <div class="project-overlay">
+                    <span class="project-tag">Commercial</span>
+                    <h3>Serenity Zen Courtyard</h3>
+                    <p>A meditative corporate courtyard featuring koi ponds, sculpted pines, and raked gravel patterns for a tech campus.</p>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Mountain Vista">
+                <div class="project-overlay">
+                    <span class="project-tag">Resort</span>
+                    <h3>Alpine Mountain Vista</h3>
+                    <p>Mountain resort landscape harmonizing with alpine terrain, featuring terraced wildflower meadows and natural stone pathways.</p>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=800&q=80" alt="Rainforest Canopy">
+                <div class="project-overlay">
+                    <span class="project-tag">Eco-Park</span>
+                    <h3>Rainforest Canopy Walk</h3>
+                    <p>Elevated boardwalks and observation platforms designed to immerse visitors without disturbing the delicate ecosystem.</p>
+                </div>
+            </div>
+            <div class="project-card fade-in">
+                <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80" alt="Heritage Gardens">
+                <div class="project-overlay">
+                    <span class="project-tag">Heritage</span>
+                    <h3>Heritage Rose Gardens</h3>
+                    <p>Restoration of a 19th-century formal garden with over 200 heritage rose varieties and period-appropriate parterres.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <div class="case-studies" id="cases">
+        <div class="case-container">
+            <div class="section-header fade-in">
+                <h2>Case of Success</h2>
+                <div class="divider"></div>
+                <p>Deep dives into our most challenging and rewarding projects, showcasing our process from concept to completion.</p>
+            </div>
+
+            <div class="case-item fade-in">
+                <div class="case-image">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" alt="Riverside Park">
+                </div>
+                <div class="case-content">
+                    <div class="case-number">01</div>
+                    <h3>Riverside Revitalization Project</h3>
+                    <p>What began as a neglected industrial waterfront became the city's most beloved public space. We transformed 8 kilometers of riverbank into a continuous greenway featuring bioswales for stormwater management, native riparian plantings, and community gathering spaces.</p>
+                    <div class="case-meta">
+                        <div class="case-meta-item">
+                            <span class="case-meta-label">Location</span>
+                            <span class="case-meta-value">Portland, Oregon</span>
+                        </div>
+                        <div class="case-meta-item">
+                            <span class="case-meta-label">Duration</span>
+                            <span class="case-meta-value">18 Months</span>
+                        </div>
+                        <div class="case-meta-item">
+                            <span class="case-meta-label">Area</span>
+                            <span class="case-meta-value">32 Hectares</span>
+                        </div>
+                    </div>
+                    <a href="#" class="case-btn">
+                        Read Full Case Study
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="case-item fade-in">
+                <div class="case-image">
+                    <img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=800&q=80" alt="Vertical Forest">
+                </div>
+                <div class="case-content">
+                    <div class="case-number">02</div>
+                    <h3>The Vertical Forest Tower</h3>
+                    <p>An ambitious mixed-use development where landscape architecture meets vertical urbanism. We designed integrated planting systems across 40 floors, creating a living building that improves air quality, reduces energy costs, and provides habitat for urban wildlife.</p>
+                    <div class="case-meta">
+                        <div class="case-meta-item">
+                            <span class="case-meta-label">Location</span>
+                            <span class="case-meta-value">Singapore</span>
+                        </div>
+                        <div class="case-meta-item">
+                            <span class="case-meta-label">Duration</span>
+                            <span class="case-meta-value">3 Years</span>
+                        </div>
+                        <div class="case-meta-item">
+                            <span class="case-meta-label">Plants</span>
+                            <span class="case-meta-value">15,000+ Species</span>
+                        </div>
+                    </div>
+                    <a href="#" class="case-btn">
+                        Read Full Case Study
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="case-item fade-in">
+                <div class="case-image">
+                    <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80" alt="Desert Oasis">
+                </div>
+                <div class="case-content">
+                    <div class="case-number">03</div>
+                    <h3>Desert Oasis Resort</h3>
+                    <p>In one of the world's driest regions, we created a luxurious resort landscape that uses 70% less water than conventional designs. Through xeriscaping, greywater recycling, and innovative shade structures, we proved sustainability and luxury can coexist beautifully.</p>
+                    <div class="case-meta">
+                        <div class="case-meta-item">
+                            <span class="case-meta-label">Location</span>
+                            <span class="case-meta-value">Dubai, UAE</span>
+                        </div>
+                        <div class="case-meta-item">
+                            <span class="case-meta-label">Duration</span>
+                            <span class="case-meta-value">24 Months</span>
+                        </div>
+                        <div class="case-meta-item">
+                            <span class="case-meta-label">Water Saved</span>
+                            <span class="case-meta-value">2.4M Liters/Year</span>
+                        </div>
+                    </div>
+                    <a href="#" class="case-btn">
+                        Read Full Case Study
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About / Contact Section -->
+    <section id="about">
+        <div class="section-header fade-in">
+            <h2>About Us</h2>
+            <div class="divider"></div>
+            <p>Get in touch with our team of landscape architects, horticulturists, and ecological designers.</p>
+        </div>
+        <div class="about-section">
+            <div class="about-info fade-in">
+                <h3>Designing Nature's Future</h3>
+                <p>Founded in 2008, Verdant Studio is an award-winning landscape architecture firm dedicated to creating outdoor spaces that honor both human experience and ecological integrity. Our multidisciplinary team brings together expertise in botany, ecology, engineering, and fine arts to deliver landscapes that are as functional as they are beautiful.</p>
+
+                <div class="contact-card">
+                    <h4>Contact Information</h4>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        </div>
+                        <div>
+                            <strong>Studio Address</strong>
+                            <span>142 Greenway Boulevard, Design District<br>Portland, OR 97205</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        </div>
+                        <div>
+                            <strong>Email</strong>
+                            <span>hello@verdantstudio.com</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        </div>
+                        <div>
+                            <strong>Phone</strong>
+                            <span>+1 (503) 555-0147</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        </div>
+                        <div>
+                            <strong>Office Hours</strong>
+                            <span>Mon — Fri: 9:00 AM – 6:00 PM PST</span>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <a href="#" aria-label="LinkedIn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        </a>
+                        <a href="#" aria-label="Twitter">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                        </a>
+                        <a href="#" aria-label="Pinterest">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="8" x2="12" y2="21"></line><path d="M5 12h14"></path><path d="M12 2a10 10 0 0 1 10 10c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image fade-in">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80" alt="Verdant Studio Team">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Verdant <span>Studio</span></div>
+            <p>Landscape Architecture & Environmental Design</p>
+            <p>142 Greenway Boulevard, Portland, OR 97205</p>
+            <div class="footer-bottom">
+                <p>Verdant Studio. All rights reserved. Designed with nature in mind.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Agent Widget -->
+    <div class="chat-widget">
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="chat-avatar">🌿</div>
+                <div>
+                    <h4>Verdant Assistant</h4>
+                    <span>Usually replies instantly</span>
+                </div>
+                <button class="chat-close" onclick="toggleChat()">✕</button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="chat-message bot">
+                    Hello! I'm your Verdant Studio assistant. I can help you with questions about our services, projects, process, or how to get started. What would you like to know?
+                    <div class="quick-replies">
+                        <button class="quick-reply" onclick="sendQuickReply('What services do you offer?')">Services</button>
+                        <button class="quick-reply" onclick="sendQuickReply('How do I start a project?')">Start a project</button>
+                        <button class="quick-reply" onclick="sendQuickReply('What are your rates?')">Pricing</button>
+                        <button class="quick-reply" onclick="sendQuickReply('Where are you located?')">Location</button>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Type your question..." onkeypress="handleKeyPress(event)">
+                <button class="chat-send" onclick="sendMessage()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                </button>
+            </div>
+        </div>
+        <button class="chat-toggle pulse" id="chatToggle" onclick="toggleChat()">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        </button>
+    </div>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Chat functionality
+        let chatOpen = false;
+
+        function toggleChat() {
+            chatOpen = !chatOpen;
+            const window = document.getElementById('chatWindow');
+            const toggle = document.getElementById('chatToggle');
+
+            if (chatOpen) {
+                window.classList.add('open');
+                toggle.classList.remove('pulse');
+                toggle.innerHTML = '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+                document.getElementById('chatInput').focus();
+            } else {
+                window.classList.remove('open');
+                toggle.innerHTML = '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>';
+            }
+        }
+
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendQuickReply(text) {
+            addMessage(text, 'user');
+            showTyping();
+            setTimeout(() => {
+                removeTyping();
+                addMessage(getBotResponse(text), 'bot');
+            }, 800 + Math.random() * 600);
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const text = input.value.trim();
+            if (!text) return;
+
+            addMessage(text, 'user');
+            input.value = '';
+            showTyping();
+
+            setTimeout(() => {
+                removeTyping();
+                addMessage(getBotResponse(text), 'bot');
+            }, 1000 + Math.random() * 800);
+        }
+
+        function addMessage(text, sender) {
+            const container = document.getElementById('chatMessages');
+            const msg = document.createElement('div');
+            msg.className = `chat-message ${sender}`;
+            msg.textContent = text;
+            container.appendChild(msg);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function showTyping() {
+            const container = document.getElementById('chatMessages');
+            const typing = document.createElement('div');
+            typing.className = 'typing-indicator';
+            typing.id = 'typingIndicator';
+            typing.innerHTML = '<span></span><span></span><span></span>';
+            container.appendChild(typing);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function removeTyping() {
+            const typing = document.getElementById('typingIndicator');
+            if (typing) typing.remove();
+        }
+
+        function getBotResponse(input) {
+            const text = input.toLowerCase();
+
+            const responses = {
+                services: [
+                    "We offer a comprehensive range of landscape architecture services including: site analysis & master planning, garden & estate design, urban green spaces, ecological restoration, sustainable landscape design, planting plans, hardscape design, water features, and landscape lighting design. Every project begins with an on-site consultation.",
+                    "Our core services span from initial concept design through construction documentation and project oversight. We specialize in sustainable landscapes, native plant gardens, urban parks, corporate campuses, and luxury residential estates. Would you like details on any specific service?"
+                ],
+                start: [
+                    "Starting a project with us is simple! First, reach out via email or phone to schedule an initial consultation. We'll visit your site, discuss your vision, budget, and timeline. Within two weeks, we present a concept proposal. From there, we move into detailed design, permitting, and construction phases. Every step is collaborative.",
+                    "Great question! Our process has four phases: (1) Discovery — site visit and vision alignment, (2) Concept Design — preliminary sketches and mood boards, (3) Design Development — detailed plans and material selections, and (4) Construction — we oversee implementation to ensure every detail matches the vision. Shall I explain any phase in more detail?"
+                ],
+                pricing: [
+                    "Our pricing depends on project scope, complexity, and site conditions. Residential gardens typically start at $15,000 for design fees, while larger commercial or public projects are quoted individually. We offer transparent, phased billing so you know exactly what you're paying for at each stage. Would you like to discuss your specific project?",
+                    "We believe in fair, transparent pricing. Design fees are typically calculated as a percentage of construction costs (8-15%) or as a fixed fee for smaller projects. During our initial consultation, we provide a detailed proposal with clear deliverables and milestones. No hidden costs — ever."
+                ],
+                location: [
+                    "Our main studio is located at 142 Greenway Boulevard in Portland's Design District, Oregon. We work on projects across the United States and internationally. For projects outside Portland, we conduct initial consultations virtually and schedule site visits as needed. Where is your project located?",
+                    "We're based in Portland, Oregon, but our portfolio spans from the Pacific Northwest to Dubai and Singapore. Distance is never a barrier — we use advanced 3D visualization and drone surveys for remote sites. Our team regularly travels for site visits and client meetings."
+                ],
+                portfolio: [
+                    "Our portfolio includes over 200 completed projects ranging from intimate residential gardens to 100+ acre public parks. Notable works include the Urban Botanical Garden, a coastal retreat estate, a vertical forest tower in Singapore, and a desert oasis resort in Dubai. You can explore featured projects in the 'Home' section above!",
+                    "We've been fortunate to work on diverse projects — urban waterfront revitalizations, corporate wellness gardens, heritage restorations, and cutting-edge sustainable developments. Each project reflects our commitment to ecology, beauty, and human experience. Check out our featured landscapes above!"
+                ],
+                process: [
+                    "Our design process is deeply collaborative. We begin with ecological site analysis, studying soil, microclimate, hydrology, and existing vegetation. Then we develop concepts that respond to both the land's character and your lifestyle needs. We use hand sketches, 3D renderings, and VR walkthroughs so you can experience the design before breaking ground.",
+                    "Every Verdant project follows our 'Listen-Observe-Design' philosophy. We spend time understanding how you want to live in the space, then observe how nature already functions there. Only then do we design — creating landscapes that feel like they've always belonged."
+                ],
+                sustainable: [
+                    "Sustainability is at the core of everything we do. We prioritize native and adaptive plant species, permeable surfaces, rainwater harvesting, and habitat creation. Our designs reduce water usage by up to 70% compared to conventional landscapes while supporting local biodiversity. We also calculate carbon footprints for every project.",
+                    "We practice regenerative landscape design — going beyond 'sustainable' to actively improve ecological health. This includes soil regeneration, pollinator corridors, carbon-sequestering plant palettes, and closed-loop water systems. Ask about our Net-Positive Landscape certification program!"
+                ],
+                team: [
+                    "Verdant Studio was founded by Elena Marsh, a landscape architect with 20+ years of experience. Our team of 18 includes certified horticulturists, ecological designers, irrigation specialists, and a dedicated visualization studio. Together we bring diverse expertise to every project.",
+                    "Our team is our greatest asset. Led by principal Elena Marsh, we have landscape architects, botanists, LEED-accredited professionals, and fine artists. Many team members hold advanced degrees in ecology, urban planning, or environmental science. We're passionate plantspeople first, designers second."
+                ],
+                contact: [
+                    "You can reach us at hello@verdantstudio.com or call +1 (503) 555-0147. Our studio at 142 Greenway Boulevard is open Monday through Friday, 9 AM to 6 PM PST. We also offer virtual consultations for out-of-area clients. Would you like me to help you prepare for an initial consultation?",
+                    "The best way to reach us is via email at hello@verdantstudio.com. For urgent inquiries, call +1 (503) 555-0147. You can also connect with us on Instagram, LinkedIn, and Pinterest where we share behind-the-scenes looks at our design process."
+                ],
+                default: [
+                    "That's an interesting question! I'd recommend speaking directly with our team for the most detailed answer. You can reach us at hello@verdantstudio.com or +1 (503) 555-0147. Is there anything else I can help clarify in the meantime?",
+                    "I'm still learning, but our team would love to discuss this with you personally. Feel free to email hello@verdantstudio.com or call our studio. In the meantime, try asking about our services, process, portfolio, or sustainability approach!",
+                    "Great question! For detailed inquiries like this, our principal architects are the best resource. Contact us at hello@verdantstudio.com and we'll schedule a consultation. Is there a general topic I can help with right now?"
+                ]
+            };
+
+            let matchedCategory = 'default';
+
+            if (text.includes('service') || text.includes('offer') || text.includes('do you do') || text.includes('what can')) matchedCategory = 'services';
+            else if (text.includes('start') || text.includes('begin') || text.includes('how to') || text.includes('process') || text.includes('get started')) matchedCategory = 'start';
+            else if (text.includes('price') || text.includes('cost') || text.includes('rate') || text.includes('fee') || text.includes('how much') || text.includes('budget')) matchedCategory = 'pricing';
+            else if (text.includes('location') || text.includes('address') || text.includes('where') || text.includes('located') || text.includes('office')) matchedCategory = 'location';
+            else if (text.includes('portfolio') || text.includes('project') || text.includes('work') || text.includes('example') || text.includes('past')) matchedCategory = 'portfolio';
+            else if (text.includes('design process') || text.includes('how do you design') || text.includes('method') || text.includes('approach')) matchedCategory = 'process';
+            else if (text.includes('sustainable') || text.includes('eco') || text.includes('green') || text.includes('environment') || text.includes('native') || text.includes('organic')) matchedCategory = 'sustainable';
+            else if (text.includes('team') || text.includes('who') || text.includes('people') || text.includes('architect') || text.includes('designer') || text.includes('founder')) matchedCategory = 'team';
+            else if (text.includes('contact') || text.includes('email') || text.includes('phone') || text.includes('reach') || text.includes('call')) matchedCategory = 'contact';
+            else if (text.includes('hello') || text.includes('hi') || text.includes('hey')) return "Hello there! Welcome to Verdant Studio. I'm here to answer questions about our landscape architecture services. What can I help you with today?";
+            else if (text.includes('thank')) return "You're very welcome! Feel free to ask if you have any other questions. We're excited about the possibility of working with you!";
+            else if (text.includes('bye') || text.includes('goodbye')) return "Take care! If you think of any other questions, I'll be right here. Have a wonderful day!";
+
+            const categoryResponses = responses[matchedCategory];
+            return categoryResponses[Math.floor(Math.random() * categoryResponses.length)];
+        }
+    </script>
+</body>
+</html>
